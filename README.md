@@ -1,1 +1,1 @@
-# isproies.github.io
+# https://proxies.icu
