@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>iproyal.com</title>
+    <style>
+      #progressBar {
+        width: 100%;
+        height: 5px;
+        background-color: #ddd;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+      }
+      #progress {
+        width: 0%;
+        height: 100%;
+        background-color: #4CAF50;
+      }
+    </style>
+  </head>
+  <body onload="redirectToC()">
+    <div id="progressBar"><div id="progress"></div></div>
+    <script>
+      function redirectToC() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://iproyal.com?r=ip', true);
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            window.location.href = 'https://iproyal.com?r=ip';
+          }
+        };
+        xhr.onprogress = function(event) {
+          if (event.lengthComputable) {
+            var percentComplete = (event.loaded / event.total) * 100;
+            document.getElementById("progress").style.width = percentComplete + '%';
+          }
+        };
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>
